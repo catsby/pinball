@@ -25,7 +25,14 @@ app "example-go" {
     }
   }
 
+  # deploy {
+  #   use "docker" {}
+  # }
   deploy {
-    use "docker" {}
+    use "aws-ecs" {
+      cluster = "cts-waypoint-cluster"
+      region = "us-west-2"
+      memory = "512"
+    }
   }
 }
