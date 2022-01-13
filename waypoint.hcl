@@ -16,13 +16,13 @@ app "example-go" {
   build {
     use "pack" {}
 
-    # registry {
-    #   use "docker" {
-    #     image = "example.com/my-app"
-    #     tag   = gitrefpretty()
-    #     local = true
-    #   }
-    # }
+    registry {
+      use "aws-ecr" {
+        repository = "catsby/pinball"
+        tag   = gitrefpretty()
+        region = "us-west-2"
+      }
+    }
   }
 
   deploy {
