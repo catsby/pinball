@@ -25,9 +25,6 @@ app "example-go" {
     }
   }
 
-  # deploy {
-  #   use "docker" {}
-  # }
   deploy {
     use "aws-ecs" {
       cluster = "cts-waypoint-cluster"
