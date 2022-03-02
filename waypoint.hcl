@@ -5,6 +5,7 @@ runner {
 
   data_source "git" {
     url = "https://github.com/catsby/pinball.git"
+    ref = "refs/heads/dev"
   }
 }
 
@@ -17,19 +18,31 @@ app "example-go" {
     use "pack" {}
 
     registry {
-      use "aws-ecr" {
-        repository = "catsby/pinball"
-        tag   = gitrefpretty()
-        region = "us-west-2"
+      use "docker" {
+        local=true
+        image    = "catsby/pinball"
+        tag      = "latest"
       }
+      # use "aws-ecr" {
+      #   repository = "catsby/pinball"
+      #   tag   = gitrefpretty()
+      #   region = "us-west-2"
+      # }
     }
   }
 
   deploy {
-    use "aws-ecs" {
-      cluster = "cts-waypoint-cluster"
-      region = "us-west-2"
-      memory = "512"
+    use "kubernetes" {
+      probe_path = "/"
+      replicas = 1
+    }
+  }
+
+  release {
+    use "kubernetes" {
+      // Sets up a load balancer to access released application
+      load_balancer = true
+      port          = 3000
     }
   }
 }
