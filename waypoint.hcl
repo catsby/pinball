@@ -1,4 +1,4 @@
-project = "pinball-highscore"
+project = "pinball-highscore2"
 
 runner {
   enabled = true
