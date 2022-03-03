@@ -2,7 +2,7 @@ project = "pinball-highscore2"
 
 runner {
   enabled = true
-  profile = "dev2"
+  # profile = "dev2"
 
   data_source "git" {
     url = "https://github.com/catsby/pinball.git"
