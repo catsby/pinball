@@ -1,16 +1,16 @@
-project = "pinball-highscore2"
+project = "pinball-highscore"
 
-runner {
-  enabled = true
-  # profile = "dev2"
+# runner {
+#   enabled = true
+#   # profile = "dev2"
 
-  data_source "git" {
-    url = "https://github.com/catsby/pinball.git"
-    ref = "refs/heads/dev"
-  }
-}
+#   data_source "git" {
+#     url = "https://github.com/catsby/pinball.git"
+#     ref = "refs/heads/dev"
+#   }
+# }
 
-app "example-go" {
+app "highscore" {
   labels = {
     "service" = "pinball-http"
   }
@@ -20,8 +20,10 @@ app "example-go" {
 
     registry {
       use "docker" {
-        local=true
-        image    = "catsby/pinball"
+        #local=true
+        image    = "0.0.0.0:5000/catsby/pinball"
+        #image    = "catsby/pinball"
+        insecure = true
         tag      = "latest"
       }
       # use "aws-ecr" {
